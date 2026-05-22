@@ -1,0 +1,22 @@
+apiVersion: argoproject.io/v1alpha1
+lind: Application
+metadata:
+  name: flask-demo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://github.com/xuantrai/gitops-platform.git'
+    targetRevision: HEAD
+    path: .
+
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      
